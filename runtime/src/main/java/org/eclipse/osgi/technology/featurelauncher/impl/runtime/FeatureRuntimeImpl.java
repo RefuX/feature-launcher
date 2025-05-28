@@ -1279,7 +1279,7 @@ public class FeatureRuntimeImpl implements FeatureRuntime {
 				.filter(b -> b.getSymbolicName() != null && b.getVersion() != null)
 				.collect(Collectors.toMap(
 						b -> Map.entry(b.getSymbolicName(), b.getVersion().toString()),
-						Bundle::getBundleId
+						b -> Long.valueOf(b.getBundleId())
 				));
 		// @formatter:on
 	}
