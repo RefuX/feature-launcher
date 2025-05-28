@@ -1275,11 +1275,11 @@ public class FeatureRuntimeImpl implements FeatureRuntime {
 
 	private Map<Map.Entry<String, String>, Long> getExistingBundles() {
 		// @formatter:off
-		return Arrays.stream(this.bundleContext.getBundles())
-				.filter(b -> b.getSymbolicName() != null)
+		return Arrays.stream(bundleContext.getBundles())
+				.filter(b -> b.getSymbolicName() != null && b.getVersion() != null)
 				.collect(Collectors.toMap(
 						b -> Map.entry(b.getSymbolicName(), b.getVersion().toString()),
-						b -> b.getBundleId()
+						Bundle::getBundleId
 				));
 		// @formatter:on
 	}
